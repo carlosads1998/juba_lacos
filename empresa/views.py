@@ -1,34 +1,17 @@
-from django.shortcuts import render
-from django.views.generic.list import ListView
-from django.views import View
-from django.http import HttpResponse
-from . import models
+from . import serializers
+from . import models 
+from rest_framework import generics
 
-class ListaProdutos(ListView):
-    model=models.produto
-    template_name= 'produto/lista.html'
+class produtoView(generics.ListCreateAPIView):
+    queryset= models.produto.objects.all()
+    serializer_class= serializers.produtoSerializer
+class produtosView(generics.RetrieveUpdateDestroyAPIView):
+    queryset= models.produto.objects.all()
+    serializer_class= serializers.produtoSerializer
     
-
-class DetalheProduto(View):
-    def get(sekf, *args, **kwargs):
-        return HttpResponse('DetalheProduto')
-    
-
-class AdicionarAoCarrinho(View):
-    def get(sekf, *args, **kwargs):
-        return HttpResponse('AdicionarAoCarrinho')
-
-class RemoverDoCarrinho(View):
-    def get(sekf, *args, **kwargs):
-        return HttpResponse('RemoverDoCarrinho')
-    
-
-class Carrinho(View):
-    def get(sekf, *args, **kwargs):
-        return HttpResponse('Carrinho')
-    
-
-class Finalizar(View):
-    def get(sekf, *args, **kwargs):
-        return HttpResponse('Finalizar')
-    
+class variaView(generics.ListCreateAPIView):
+    queryset= models.Variacao.objects.all()
+    serializer_class= serializers.variaSerializer
+class variasView(generics.ListCreateAPIView):
+    queryset= models.Variacao.objects.all()
+    serializer_class= serializers.variaSerializer

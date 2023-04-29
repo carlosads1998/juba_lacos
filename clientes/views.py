@@ -1,18 +1,18 @@
-from django.shortcuts import render
-from django.views.generic.list import ListView
-from django.views import View
-from django.http import HttpResponse
+from . import serializers
+from . import models
+from rest_framework import generics
 
+class pedidoView(generics.ListCreateAPIView):
+    queryset=models.Pedido.objects.all()
+    serializer_class= serializers.pedidoSerializer
+class pedidosView(generics.RetrieveUpdateDestroyAPIView):
+    queryset=models.Pedido.objects.all()
+    serializer_class= serializers.pedidoSerializer
 
-class Pagar(View):
-    def get(sekf, *args, **kwargs):
-        return HttpResponse('pagar')
-
-class FecharPedido(View):
-    def get(sekf, *args, **kwargs):
-        return HttpResponse('FecharPedido')
-
-
-class Detalhe(View):
-    def get(sekf, *args, **kwargs):
-        return HttpResponse('Detalhe')
+class itemView(generics.ListCreateAPIView):
+    queryset=models.ItemPedidos.objects.all()
+    serializer_class= serializers.itemSerializer
+class itensView(generics.RetrieveUpdateDestroyAPIView):
+    queryset=models.ItemPedidos.objects.all()
+    serializer_class= serializers.itemSerializer
+    

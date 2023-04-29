@@ -4,10 +4,8 @@ from . import views
 app_name= 'empresa'
 
 urlpatterns = [
-    path('', views.ListaProdutos.as_view(), name='Lista'),
-    path('<slug>', views.DetalheProduto.as_view(), name= 'detalhe'),
-    path('adicionarcarrinho/', views.AdicionarAoCarrinho.as_view(), name= 'Adicionar_ao_Carrinho'),
-    path('removerdocarrinho/', views.RemoverDoCarrinho.as_view(), name='removerdocarrinho'),
-    path('carrinho/', views.Carrinho.as_view(), name='Carrinho'),
-    path('finalizar/', views.Finalizar.as_view(), name='Finalizar'),
+    path('produto', views.produtoView.as_view(), name='Produto'),
+    path('produtos/', views.produtosView.as_view(), name= 'Produtos'),
+    path('variacao/', views.variaView.as_view(), name= 'variação'),
+    path('variacoes/', views.variasView.as_view(), name='variações'),
 ]

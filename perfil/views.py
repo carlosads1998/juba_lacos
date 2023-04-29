@@ -1,21 +1,11 @@
-from django.shortcuts import render
-from django.views.generic.list import ListView
-from django.views import View
-from django.http import HttpResponse
+from . import serializers
+from . import models
+from rest_framework import generics
 
-class Criar(View):
-    def get(sekf, *args, **kwargs):
-        return HttpResponse('Criar')
-    
-class Atualizar(View):
-    def get(sekf, *args, **kwargs):
-        return HttpResponse('Atualizar')
-    
-class Login(View):
-    def get(sekf, *args, **kwargs):
-        return HttpResponse('Login')
-    
-class Logout(View):
-    def get(sekf, *args, **kwargs):
-        return HttpResponse('Logout')
-    
+
+class perfilView(generics.ListCreateAPIView):
+    queryset= models.perfil.objects.all()
+    serializer_class=serializers.PerfilSerializer
+class perfisView(generics.RetrieveUpdateDestroyAPIView):
+    queryset= models.perfil.objects.all()
+    serializer_class=serializers.PerfilSerializer
